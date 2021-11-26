@@ -25,7 +25,7 @@ class BoardGUI:
         self.running = False
         size = int(WINDOW_WIDTH // (self.board.n * 1.2)), int(WINDOW_HEIGHT / (self.board.m * 1.2))
         self.imgs = {}
-        for obj, name in zip(('*', '*A', '*B', 'A', 'B'), ('ant', 'ant_A', 'ant_B', 'A', 'B')):
+        for obj, name in zip(('*', '*A', '*B', 'A', 'B'), BoardGUI.IMGS.keys()):
             self.imgs[obj] = pygame.transform.scale(BoardGUI.IMGS[name], size)
         pygame.init()
 
