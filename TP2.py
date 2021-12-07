@@ -178,14 +178,22 @@ def main():
                 time.sleep(1)
 
     parser = ArgumentParser('Launch yes SMA project with arguments')
-    parser.add_argument('-n', type=int, default=50, help='Number of lines in the board')
-    parser.add_argument('-m', type=int, default=50, help='Number of columns in the board')
-    parser.add_argument('-nA', type=int, default=200, help='Number of \'A\' blocks in the board')
-    parser.add_argument('-nB', type=int, default=200, help='Number of \'B\' blocks in the board')
-    parser.add_argument('-nAgents', type=int, default=20, help='Number of agents in the board')
-    parser.add_argument('-v', '--variant', action="store_true", help='Use the variant with errors')
-    parser.add_argument('-s', '--step-per-frame', type=int, default=1, help='Number of actions per frame')
-    parser.add_argument('-t', '--time-between-frames', type=float, default=0, help='The wait time between each frame')
+    parser.add_argument('-n', type=int, default=50,
+                        help='Number of lines in the board')
+    parser.add_argument('-m', type=int, default=50,
+                        help='Number of columns in the board')
+    parser.add_argument('-nA', type=int, default=200,
+                        help='Number of \'A\' blocks in the board')
+    parser.add_argument('-nB', type=int, default=200,
+                        help='Number of \'B\' blocks in the board')
+    parser.add_argument('-nAgents', type=int, default=20,
+                        help='Number of agents in the board')
+    parser.add_argument('-v', '--variant', action="store_true",
+                        help='Use the variant with errors')
+    parser.add_argument('-s', '--step-per-frame', type=int,
+                        default=1, help='Number of actions per frame')
+    parser.add_argument('-t', '--time-between-frames', type=float,
+                        default=0, help='The wait time between each frame')
     args = parser.parse_args()
     print(args)
     b = Board(args.n, args.m, args.nA, args.nB, args.nAgents, args.variant)

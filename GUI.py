@@ -12,8 +12,11 @@ class BoardGUI:
         'ant': pygame.image.load(r'./Ant.png'),
         'ant_A': pygame.image.load(r'./Ant_A.png'),
         'ant_B': pygame.image.load(r'./Ant_B.png'),
+        'double_ant_C': pygame.image.load(r'./double_Ant_C.png'),
         'A': pygame.image.load(r'./A.png'),
-        'B': pygame.image.load(r'./B.png')
+        'B': pygame.image.load(r'./B.png'),
+        'C': pygame.image.load(r'./C.png'),
+        'P': pygame.image.load(r'./P.png')
     }
 
     def __init__(self, board, sleep_time_per_frame=0.1, step_per_frame=1):
@@ -23,9 +26,10 @@ class BoardGUI:
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = False
-        size = int(WINDOW_WIDTH // (self.board.n * 1.2)), int(WINDOW_HEIGHT / (self.board.m * 1.2))
+        size = int(WINDOW_WIDTH // (self.board.n * 1.2)
+                   ), int(WINDOW_HEIGHT / (self.board.m * 1.2))
         self.imgs = {}
-        for obj, name in zip(('*', '*A', '*B', 'A', 'B'), ('ant', 'ant_A', 'ant_B', 'A', 'B')):
+        for obj, name in zip(('*', '*A', '*B', '*C', 'A', 'B', 'C', 'P'), ('ant', 'ant_A', 'ant_B', 'double_ant_C', 'A', 'B', 'C', 'P')):
             self.imgs[obj] = pygame.transform.scale(BoardGUI.IMGS[name], size)
         pygame.init()
 
@@ -55,7 +59,9 @@ class BoardGUI:
                 rect = pygame.Rect(x, y, x_size, y_size)
                 pygame.draw.rect(self.screen, BLACK, rect, 1)
                 for obj in self.board.board[lin][col]:
-                    self.screen.blit(self.imgs[str(obj)], (x + x_size * 0.1, y + y_size * 0.1))
+                    # if obj != 'P':
+                    self.screen.blit(
+                        self.imgs[str(obj)], (x + x_size * 0.1, y + y_size * 0.1))
 
     def update(self):
         for event in pygame.event.get():
